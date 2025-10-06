@@ -1,10 +1,85 @@
-fruits = ("banana", "apple", "bananamango", "mango", "strawberry-banana")
+#1
+def count_digits(n):
+    return sum(c.isdigit() for c in str(n)) 
+#2
+def word_count(text):
+    for ch in ",.":
+        text = text.replace(ch, "")
+    words = text.lower().split()
+    return {word: words.count(word) for word in set(words)}
+#3
+numbers = [1, 2, 3, 4, 5, 6]
+even_squares = list(map(lambda x: x**2, filter(lambda x: x % 2 == 0, numbers)))
 
-search_fruit = input("введи название фрукта: ").lower()
+#4
+students = {
+    "Олег": [90, 85, 78],
+    "Ира": [100, 95, 98],
+    "Макс": [70, 80, 75]
+}
 
-exact_count = fruits.count(search_fruit)
+averages = {name: sum(grades)/len(grades) for name, grades in students.items()}
+top_student = max(students.items(), key=lambda x: max(x[1]))
 
-partial_count = sum(search_fruit in fruit for fruit in fruits)
+#5
+def char_frequency(s):
+    return {char: s.count(char) for char in set(s)}
 
-print(f"совпадений: {exact_count}")
-print(f"частичных совпадений: {partial_count}")
+#6
+def extract_numbers(t):
+    return tuple(x for x in t if isinstance(x, (int, float)))
+#7
+def sort_by_length(strings):
+    return sorted(strings, key=len)
+
+#8
+employees = {
+    "Анна": {"посада": "менеджер", "зарплата": 1200},
+    "Богдан": {"посада": "розробник", "зарплата": 1500},
+    "Катя": {"посада": "дизайнер", "зарплата": 1000}
+}
+
+def sort_by_salary(data):
+    return sorted(data.items(), key=lambda x: x[1]["зарплата"], reverse=True)
+
+#9
+max_of_two = lambda a, b: a if a > b else b
+
+#10
+def unique_elements(lst):
+    return set(lst)
+
+#11
+squares = {i: i**2 for i in range(1, 11)}
+def sum_values(d):
+    return sum(d.values())
+
+#12
+def filter_even_gt10(lst):
+    return [x for x in lst if x > 10 and x % 2 == 0]
+
+#13
+def sum_tuple(t):
+    return sum(t)
+
+#14
+is_positive = lambda x: x > 0
+
+#15
+people = {"Олег": 25, "Ира": 30, "Макс": 18}
+def older_than(age):
+    return [name for name, a in people.items() if a > age]
+
+#16
+def min_max(t):
+    return min(t), max(t)
+
+#17
+numbers = [1, 3, 6, 9, 10, 12]
+div_by_3 = list(filter(lambda x: x % 3 == 0, numbers))
+
+#18
+def char_index_pairs(s):
+    return [(char, idx) for idx, char in enumerate(s)]
+
+
