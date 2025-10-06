@@ -1,0 +1,10 @@
+fruits = ("banana", "apple", "bananamango", "mango", "strawberry-banana")
+
+search_fruit = input("введи название фрукта: ").lower()
+
+exact_count = fruits.count(search_fruit)
+
+partial_count = sum(search_fruit in fruit for fruit in fruits)
+
+print(f"совпадений: {exact_count}")
+print(f"частичных совпадений: {partial_count}")
