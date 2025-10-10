@@ -270,3 +270,53 @@ def main():
             
 #8
 
+class Student:                             # тут студент 
+    def __init__(self, name, age, grades):
+        self.name = name
+        self.age = age
+        self.grades = grades  
+
+    def get_average_grade(self):
+        if self.grades:
+            return sum(self.grades) / len(self.grades)
+        return 0
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "age": self.age,
+            "grades": self.grades
+        }
+
+    @staticmethod
+    def from_dict(data):
+        return Student(data["name"], data["age"], data["grades"])
+    
+class StudentDatabase:                            # тут база будет
+    def __init__(self, filename="students.json"): # import json сделать надо ещё чтобы работало
+        self.filename = filename
+
+    def add_student(self, student):
+        students = self.read_students()
+        students.append(student.to_dict())
+        with open(self.filename, "w", encoding="utf-8") as f:
+            json.dump(students, f, ensure_ascii=False, indent=4)
+        print(f"студент '{student.name}' добавлен.")
+
+    def read_students(self):
+        try:
+            with open(self.filename, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return data
+        except FileNotFoundError:
+            return []
+
+    def find_student(self, name):
+        students = self.read_students()
+        for data in students:
+            if data["name"].lower() == name.lower():
+                student = Student.from_dict(data)
+                print(f"найден студент: {student.name}, возраст: {student.age}, средняя оценка: {student.get_average_grade():.2f}")
+                return student
+        print(f"студент '{name}' не найден.")
+        return None
